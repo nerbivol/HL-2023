@@ -1,0 +1,5 @@
+{
+	"port": 8011,
+	"open": false,
+	"files": ["./*.{html,htm,css,js}"]
+}

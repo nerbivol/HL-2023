@@ -1,0 +1,11 @@
+{
+  "name": "exp",
+  "version": "1.0.0",
+  "main": "data/index.html",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

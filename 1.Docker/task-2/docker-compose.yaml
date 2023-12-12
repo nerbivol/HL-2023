@@ -1,0 +1,10 @@
+version: '3.0'
+
+services:
+  lite-server:
+    image: node
+    volumes:
+      - "./data:/data"
+    ports:
+      - "3000:8011"
+    entrypoint: ["/data/init.sh", ""]
