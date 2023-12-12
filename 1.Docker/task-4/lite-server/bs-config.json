@@ -1,0 +1,4 @@
+{
+	"open": false,
+	"files": ["./*.{html,htm,css,js}"]
+}

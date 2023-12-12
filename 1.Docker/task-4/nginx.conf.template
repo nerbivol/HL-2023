@@ -1,0 +1,22 @@
+
+    server {
+        listen 80;
+
+        location /lite-server {
+            proxy_pass http://${LITE_CONTAINER_IP}:3000/;
+        }
+        location /json-server {
+            proxy_pass http://${JSON_CONTAINER_IP}:3000/;
+        }
+        location /posts {
+            proxy_pass http://${JSON_CONTAINER_IP}:3000/posts;
+        }
+        location /comments {
+            proxy_pass http://${JSON_CONTAINER_IP}:3000/comments;
+        } 
+        location /profile {
+            proxy_pass http://${JSON_CONTAINER_IP}:3000/profile;
+        } 
+    }
+
+
