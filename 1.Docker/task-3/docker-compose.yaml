@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  json-server:
+    image: node:12.22.9
+    env_file:
+      - data/test.env
+    volumes:
+      - "./data:/app"
+    ports:
+      - "3000-3002:7000"
+    entrypoint: ["/app/init.sh", ""]
+
