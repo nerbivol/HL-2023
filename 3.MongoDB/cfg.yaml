@@ -1,0 +1,42 @@
+version: '3'
+
+networks:
+  lnet:
+    name: lab3global
+    external: true
+
+volumes:  
+  configsvr1:
+  configsvr2:
+  configsvr3:
+
+services:
+  configsvr1:
+    image: mongo
+    command: mongod --configsvr --replSet configRS
+    ports:
+      - "27018:27019"
+    volumes:
+      - configsvr1:/data/db
+    networks:
+      - lnet
+
+  configsvr2:
+    image: mongo
+    command: mongod --configsvr --replSet configRS
+    ports:
+      - "27019:27019"
+    volumes:
+      - configsvr2:/data/db
+    networks:
+      - lnet
+
+  configsvr3:
+    image: mongo
+    command: mongod --configsvr --replSet configRS
+    ports:
+      - "27020:27019"
+    volumes:
+      - configsvr3:/data/db
+    networks:
+      - lnet

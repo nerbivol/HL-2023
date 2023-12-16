@@ -1,0 +1,15 @@
+version: '3'
+
+networks:
+  lnet:
+    name: lab3global
+    external: true
+
+services:
+  mongos:
+    image: mongo
+    ports:
+      - "27017:27017"
+    command: mongos --configdb configRS/configsvr1:27019,configsvr2:27019,configsvr3:27019 --bind_ip 0.0.0.0
+    networks:
+      - lnet

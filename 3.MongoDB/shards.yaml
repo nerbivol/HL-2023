@@ -1,0 +1,145 @@
+version: '3'
+
+networks:
+  lnet:
+    name: lab3global
+    external: true
+
+volumes:
+  shard1a:
+  shard1b:
+  shard1c:
+  shard2a:
+  shard2b:
+  shard2c:
+  shard3a:
+  shard3b:
+  shard3c:
+  shard4a:
+  shard4b:
+  shard4c:
+
+services:
+# shard 1
+  shard1a:
+    image: mongo
+    command: mongod --shardsvr --replSet shard1rs
+    ports:
+      - "27021:27018"
+    volumes:
+      - shard1a:/data/db
+    networks:
+      - lnet
+
+  shard1b:
+    image: mongo
+    command: mongod --shardsvr --replSet shard1rs
+    ports:
+      - "27022:27018"
+    volumes:
+      - shard1b:/data/db
+    networks:
+      - lnet
+
+  shard1c:
+    image: mongo
+    command: mongod --shardsvr --replSet shard1rs
+    ports:
+      - "27023:27018"
+    volumes:
+      - shard1c:/data/db
+    networks:
+      - lnet
+
+# shard 2
+  shard2a:
+    image: mongo
+    command: mongod --shardsvr --replSet shard2rs
+    ports:
+      - "27024:27018"
+    volumes:
+      - shard2a:/data/db
+    networks:
+      - lnet
+
+  shard2b:
+    image: mongo
+    command: mongod --shardsvr --replSet shard2rs
+    ports:
+      - "27025:27018"
+    volumes:
+      - shard2b:/data/db
+    networks:
+      - lnet
+
+  shard2c:
+    image: mongo
+    command: mongod --shardsvr --replSet shard2rs
+    ports:
+      - "27026:27018"
+    volumes:
+      - shard2c:/data/db
+    networks:
+      - lnet
+
+# shard 3
+  shard3a:
+    image: mongo
+    command: mongod --shardsvr --replSet shard3rs
+    ports:
+      - "27027:27018"
+    volumes:
+      - shard3a:/data/db
+    networks:
+      - lnet
+
+  shard3b:
+    image: mongo
+    command: mongod --shardsvr --replSet shard3rs
+    ports:
+      - "27028:27018"
+    volumes:
+      - shard3b:/data/db
+    networks:
+      - lnet
+
+  shard3c:
+    image: mongo
+    command: mongod --shardsvr --replSet shard3rs
+    ports:
+      - "27029:27018"
+    volumes:
+      - shard3c:/data/db
+    networks:
+      - lnet
+
+# shard 4
+  shard4a:
+    image: mongo
+    command: mongod --shardsvr --replSet shard4rs
+    ports:
+      - "27030:27018"
+    volumes:
+      - shard4a:/data/db
+    networks:
+      - lnet
+
+  shard4b:
+    image: mongo
+    command: mongod --shardsvr --replSet shard4rs
+    ports:
+      - "27031:27018"
+    volumes:
+      - shard4b:/data/db
+    networks:
+      - lnet
+
+  shard4c:
+    image: mongo
+    command: mongod --shardsvr --replSet shard4rs
+    ports:
+      - "27032:27018"
+    volumes:
+      - shard4c:/data/db
+    networks:
+      - lnet

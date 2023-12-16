@@ -1,0 +1,33 @@
+// task 1
+docker-compose -f cfg.yaml up -d
+
+mongosh mongodb://localhost:27018
+rs.initiate({_id: "configRS", configsvr: true, members: [{_id: 0, host: "configsvr1:27019"},{_id: 1, host: "configsvr2:27019"},{_id : 2, host : "configsvr3:27019"}]})
+
+docker-compose -f shards.yaml up -d
+
+mongosh mongodb://localhost:27021
+rs.initiate({_id: "shard1rs", members: [{_id: 0, host: "shard1a:27018"},{_id: 1, host: "shard1b:27018"},{_id : 2, host : "shard1c:27018"}]})
+
+mongosh mongodb://localhost:27024
+rs.initiate({_id: "shard2rs", members: [{_id: 0, host: "shard2a:27018"},{_id: 1, host: "shard2b:27018"},{_id : 2, host : "shard2c:27018"}]})
+
+mongosh mongodb://localhost:27027
+rs.initiate({_id: "shard3rs", members: [{_id: 0, host: "shard3a:27018"},{_id: 1, host: "shard3b:27018"},{_id : 2, host : "shard3c:27018"}]})
+
+mongosh mongodb://localhost:27030
+rs.initiate({_id: "shard4rs", members: [{_id: 0, host: "shard4a:27018"},{_id: 1, host: "shard4b:27018"},{_id : 2, host : "shard4c:27018"}]})
+
+docker-compose -f mongos.yaml up -d
+
+mongosh mongodb://localhost:27017
+
+sh.addShard("shard1rs/shard1a:27018,shard1b:27018,shard1c:27018")
+sh.addShard("shard2rs/shard2a:27018,shard2b:27018,shard2c:27018")
+sh.addShard("shard3rs/shard3a:27018,shard3b:27018,shard3c:27018")
+sh.addShard("shard4rs/shard4a:27018,shard4b:27018,shard4c:27018")
+
+// do not need to ? // docker cp database.csv be91352f814c:/database.csv
+// task 2
+cd C:\Program Files\MongoDB\Tools\100\bin
+mongoimport --uri="mongodb://localhost:27017" --type csv --headerline --db londondb --collection postcodes --file C:\\Users\\yevhe\\Desktop\\University\\postgraduate\\HL\\lab3\\database.csv
